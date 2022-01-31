@@ -11,29 +11,6 @@
 
 Citizen.CreateThread(function()
     while true do
-       Citizen.Wait(1)
-       for k,v in pairs(cfg.Start) do
-   DrawMarker(1, 151.88554382324,-1478.3123779297,29.357027053833-0.99, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 0.5001, 217, 28, 28, 200, 0, 0, 0, 50)
-        if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v[1], v[2], v[3]) < 2 then
-            DrawText3Ds(v[1], v[2], v[3]+0.15, "~r~[E]~w~ - Start madrute")
-            if IsControlJustPressed(1, 38) then
-                if not alleredeigang then
-                    exports['mythic_notify']:DoHudText('inform', 'Du har nu startet en madrute! Tag hen og hent maden på venstre side!', { ['g'] = '#ffffff', ['w'] = '#000000' })
-                    Citizen.Wait(1000)
-                    madrute = true
-                    alleredeigang = true
-                else
-                    exports['mythic_notify']:DoHudText('inform', 'Du er alerede igang med en rute', { ['g'] = '#ffffff', ['w'] = '#000000' })
-                end
-            end
-          end
-       end
-    end
-end)
-
-
-Citizen.CreateThread(function()
-    while true do
         Citizen.Wait(1)
         for k,v in pairs(cfg.Hentmad) do
             if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v[1], v[2], v[3]) < 2 then
@@ -58,6 +35,23 @@ Citizen.CreateThread(function()
               end
             end
         end
+        
+        for k,v in pairs(cfg.Start) do
+   DrawMarker(1, 151.88554382324,-1478.3123779297,29.357027053833-0.99, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 0.5001, 217, 28, 28, 200, 0, 0, 0, 50)
+        if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), v[1], v[2], v[3]) < 2 then
+            DrawText3Ds(v[1], v[2], v[3]+0.15, "~r~[E]~w~ - Start madrute")
+            if IsControlJustPressed(1, 38) then
+                if not alleredeigang then
+                    exports['mythic_notify']:DoHudText('inform', 'Du har nu startet en madrute! Tag hen og hent maden på venstre side!', { ['g'] = '#ffffff', ['w'] = '#000000' })
+                    Citizen.Wait(1000)
+                    madrute = true
+                    alleredeigang = true
+                else
+                    exports['mythic_notify']:DoHudText('inform', 'Du er alerede igang med en rute', { ['g'] = '#ffffff', ['w'] = '#000000' })
+                end
+            end
+          end
+       end
     end)
 
     RegisterNetEvent('SpawnBil')
