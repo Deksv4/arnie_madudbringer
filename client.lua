@@ -9,6 +9,8 @@
 
 -- Starter settings --
 
+local tagetmad = false
+
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(1)
